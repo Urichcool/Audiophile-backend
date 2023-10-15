@@ -12,15 +12,14 @@ const getNewGoods = async (req, res) => {
 
 const getGoodsById = async (req, res) => {
   const { goodsId } = req.params;
-  if (!isNaN(goodsId)) {
-     const goods = await service.findGoodsById(goodsId);
-     if (goods) {
-       return res.status(200).json(goods);
-     }
+  if (goodsId.length === 24) {
+    const goods = await service.findGoodsById(goodsId);
+    if (goods) {
+      return res.status(200).json(goods);
+    }
   }
   res.status(404).json({ message: "Not found" });
 };
-
 
 module.exports = {
   getNewGoods,

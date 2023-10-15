@@ -4,5 +4,4 @@ const headphonesController = require("../controllers/headphones");
 
 headphonesRoute.get("/", headphonesController.getAllHeadphones);
 
-
 module.exports = { headphonesRoute };
