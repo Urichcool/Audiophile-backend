@@ -3,7 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { goodsRoute } = require("./routes/goodsRoute");
 const { headphonesRoute } = require("./routes/headphonesRoute");
-const {speakersRoute} = require("./routes/speakersRoute")
+const { speakersRoute } = require("./routes/speakersRoute");
+const { earphonesRoute } = require("./routes/earphonesRoute");
 
 const app = expess();
 
@@ -15,7 +16,8 @@ app.use(cors());
 
 app.use("/goods", goodsRoute);
 app.use("/headphones", headphonesRoute);
-app.use("/speakers", speakersRoute)
+app.use("/speakers", speakersRoute);
+app.use("/earphones", earphonesRoute);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
