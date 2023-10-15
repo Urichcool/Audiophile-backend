@@ -1,24 +1,9 @@
-const expess = require("express");
-const morgan = require("morgan");
 const MongoClient = require("mongodb").MongoClient;
 const { connectMongo } = require("./db/conection");
-const app = expess();
-const cors = require("cors");
 require("dotenv").config();
+const app = require("./app");
 
-const {homeRouter} = require('./homeRouter')
 const PORT = process.env.PORT || 3001;
-
-app.use(expess.json());
-app.use(expess.urlencoded({ extended: true }));
-app.use(expess.static('public'));
-app.use(morgan('tiny'));
-app.use(homeRouter)
-app.use(cors());
-
-app.get("/home", (req, res) => {
-  res.sendStatus(200);
-});
 
 const start = async () => {
   try {
