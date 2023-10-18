@@ -1,4 +1,7 @@
 const service = require("../service/goods");
+const earphonesService = require('../service/earphones');
+const headphonesService = require('../service/headphones');
+const speakersService = require('../service/speakers');
 
 const getNewGoods = async (req, res) => {
   const newGoods = await service.findNewGoods();
@@ -21,7 +24,25 @@ const getGoodsById = async (req, res) => {
   res.status(404).json({ message: "Not found" });
 };
 
+const getOtherGoods = async (req, res) => {
+  const headphones = await headphonesService.findAllHeadphones();
+  const speakers = await speakersService.findAllSpeakers();
+  const earphones = await earphonesService.findAllEarphones();
+
+  const otherGoods = [
+    headphones[Math.floor(Math.random() * headphones.length)],
+    earphones[Math.floor(Math.random() * earphones.length)],
+    speakers[Math.floor(Math.random() * speakers.length)]
+  ];
+
+  if (otherGoods.length !== 0) {
+    return res.status(200).json(otherGoods)
+  }
+  res.status(404).json({ message: "Not found" });
+}
+
 module.exports = {
   getNewGoods,
   getGoodsById,
+  getOtherGoods
 };

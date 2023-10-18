@@ -60,35 +60,6 @@ const goodsSchema = new Schema(
         desktop: String,
       },
     },
-    others: [
-      {
-        slug: String,
-        name: String,
-        image: {
-          mobile: String,
-          tablet: String,
-          desktop: String,
-        },
-      },
-      {
-        slug: String,
-        name: String,
-        image: {
-          mobile: String,
-          tablet: String,
-          desktop: String,
-        },
-      },
-      {
-        slug: String,
-        name: String,
-        image: {
-          mobile: String,
-          tablet: String,
-          desktop: String,
-        },
-      },
-    ],
   },
   { versionKey: false, timestamp: true }
 );
