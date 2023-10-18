@@ -1,5 +1,6 @@
+import { IGoods } from "../interfaces/goods";
 import { Goods } from "./schemas/goods";
 
-const findAllHeadphones = async () => Goods.find({ category: "headphones" });
+const findAllHeadphones = async ():Promise<IGoods[]> => Goods.find({ category: "headphones" });
 
 module.exports = { findAllHeadphones };

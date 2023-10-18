@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import { IGoods } from "../../interfaces/goods";
 const { Schema, model } = mongoose;
 
-const goodsSchema = new Schema(
+const goodsSchema:mongoose.Schema = new Schema(
   {
     id: Number,
     slug: String,

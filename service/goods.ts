@@ -1,7 +1,9 @@
+import { IGoods } from "../interfaces/goods";
 import { Goods } from "./schemas/goods";
 
-const findNewGoods = async () => Goods.find({ new: true });
-const findGoodsById = async (goodsId:string) => Goods.findById(goodsId)
+const findNewGoods = async ():Promise<IGoods[]> => Goods.find({ new: true });
+const findGoodsById = async (goodsId: string): Promise<IGoods | null> =>
+  Goods.findById(goodsId);
 
 module.exports = {
   findNewGoods,
