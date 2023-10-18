@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import { IGoods } from "../../interfaces/goods";
 const { Schema, model } = mongoose;
 
 const goodsSchema = new Schema(
@@ -64,6 +65,6 @@ const goodsSchema = new Schema(
   { versionKey: false, timestamp: true }
 );
 
-const Goods = model("Goods", goodsSchema, "goods");
+export const Goods = model("Goods", goodsSchema, "goods");
 
-module.exports = Goods;
+
