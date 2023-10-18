@@ -1,4 +1,4 @@
-const Goods = require("./schemas/goods");
+import { Goods } from "./schemas/goods";
 
 const findAllSpeakers = async () => Goods.find({ category: "speakers" });
 

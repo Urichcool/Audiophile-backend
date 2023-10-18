@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const connectMongo = async () => {
+ export const connectMongo = async ():Promise<void> => {
   mongoose.set("strictQuery", true);
   return mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -8,6 +8,3 @@ const connectMongo = async () => {
   });
 };
 
-module.exports = {
-  connectMongo,
-};

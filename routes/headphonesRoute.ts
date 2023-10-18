@@ -1,5 +1,5 @@
-const expess = require("express");
-const headphonesRoute = expess.Router();
+import express from "express";
+const headphonesRoute = express.Router();
 const headphonesController = require("../controllers/headphones");
 
 headphonesRoute.get("/", headphonesController.getAllHeadphones);
