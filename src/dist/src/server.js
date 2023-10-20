@@ -9,13 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.connectMongo = void 0;
-const mongoose = require("mongoose");
-const connectMongo = () => __awaiter(void 0, void 0, void 0, function* () {
-    mongoose.set("strictQuery", true);
-    return mongoose.connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+const conection_1 = require("../db/conection");
+require("dotenv").config();
+const app = require("./app");
+const PORT = process.env.PORT || 3001;
+const start = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield (0, conection_1.connectMongo)();
+        console.log("Database connection successful");
+        app.listen(PORT, (err) => {
+            if (err)
+                console.error("Error at aserver launch", err);
+            console.log(`Server works at port ${PORT}`);
+        });
+    }
+    catch (err) {
+        console.log(err);
+        process.exit(1);
+    }
 });
-exports.connectMongo = connectMongo;
+start();
