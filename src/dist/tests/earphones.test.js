@@ -11,21 +11,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const conection_1 = require("../db/conection");
 const supertest = require("supertest");
-const mongoose = require("mongoose");
 const app = require("../app");
 require("dotenv").config();
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
-    (0, conection_1.connectMongo)();
+    yield (0, conection_1.connectMongo)();
 }));
-mongoose.set("strictQuery", false);
-describe("earphones test", () => {
+describe("get all earphones test", () => {
     test("return all earphones", () => __awaiter(void 0, void 0, void 0, function* () {
         const earphonesController = yield supertest(app).get("/earphones");
         expect(earphonesController.statusCode).toBe(200);
         expect(typeof earphonesController._body[0].slug).toBe("string");
         expect(typeof earphonesController._body[0].name).toBe("string");
         expect(typeof earphonesController._body[0].image).toBe("object");
-        expect(typeof earphonesController._body[0].category).toBe("string");
+        expect(earphonesController._body[0].category).toBe("earphones");
         expect(typeof earphonesController._body[0].categoryImage).toBe("object");
         expect(typeof earphonesController._body[0].new).toBe("boolean");
         expect(typeof earphonesController._body[0].price).toBe("number");

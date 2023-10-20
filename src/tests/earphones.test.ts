@@ -1,24 +1,21 @@
 import { connectMongo, closeMongo } from "../db/conection";
 const supertest = require("supertest");
-const mongoose = require("mongoose");
 const app = require("../app");
 require("dotenv").config();
 
 beforeAll(async () => {
-  connectMongo();
+ await connectMongo();
 });
 
-mongoose.set("strictQuery", false);
 
-describe("earphones test", () => {
+describe("get all earphones test", () => {
   test("return all earphones", async () => {
     const earphonesController = await supertest(app).get("/earphones");
-
     expect(earphonesController.statusCode).toBe(200);
     expect(typeof earphonesController._body[0].slug).toBe("string");
     expect(typeof earphonesController._body[0].name).toBe("string");
     expect(typeof earphonesController._body[0].image).toBe("object");
-    expect(typeof earphonesController._body[0].category).toBe("string");
+    expect(earphonesController._body[0].category).toBe("earphones");
     expect(typeof earphonesController._body[0].categoryImage).toBe("object");
     expect(typeof earphonesController._body[0].new).toBe("boolean");
     expect(typeof earphonesController._body[0].price).toBe("number");
