@@ -1,6 +1,15 @@
 {
   "version": 2,
-  "name": "audiophile-backend",
-  "builds": [{ "src": "app.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/app.js" }]
+  "builds": [
+    {
+      "src": "./src/dist/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
 }
