@@ -10,22 +10,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const conection_1 = require("../db/conection");
+const supertest = require("supertest");
+const app = require("../app");
 require("dotenv").config();
-const app = require("./app");
-const PORT = process.env.PORT || 3001;
-const start = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield (0, conection_1.connectMongo)();
-        console.log("Database connection successful");
-        app.listen(PORT, (err) => {
-            if (err)
-                console.error("Error at aserver launch", err);
-            console.log(`Server works at port ${PORT}`);
-        });
-    }
-    catch (err) {
-        console.log(err);
-        process.exit(1);
-    }
+beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, conection_1.connectMongo)();
+}));
+describe("errors test", () => {
+    test("incorrect route", () => __awaiter(void 0, void 0, void 0, function* () {
+        const incorrectRoute = yield supertest(app).get("/goods/");
+        expect(incorrectRoute.statusCode).toBe(404);
+        expect(incorrectRoute._body).toEqual({ message: "Not found" });
+    }));
 });
-start();
+afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, conection_1.closeMongo)();
+}));
