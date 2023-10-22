@@ -9,13 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.connectMongo = void 0;
-const mongoose = require("mongoose");
-const connectMongo = () => __awaiter(void 0, void 0, void 0, function* () {
-    mongoose.set("strictQuery", true);
-    return mongoose.connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+const conection_1 = require("../db/conection");
+const supertest = require("supertest");
+const app = require("../app");
+require("dotenv").config();
+beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, conection_1.connectMongo)();
+}));
+describe("errors test", () => {
+    test("incorrect route", () => __awaiter(void 0, void 0, void 0, function* () {
+        const incorrectRoute = yield supertest(app).get("/goods/");
+        expect(incorrectRoute.statusCode).toBe(404);
+        expect(incorrectRoute._body).toEqual({ message: "Not found" });
+    }));
 });
-exports.connectMongo = connectMongo;
+afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
+    yield (0, conection_1.closeMongo)();
+}));

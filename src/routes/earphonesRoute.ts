@@ -1,6 +1,6 @@
 import express from "express";
-const earphonesRoute = express.Router();
 const earphonesController = require("../controllers/earphones");
+const earphonesRoute = express.Router();
 
 earphonesRoute.get("/", earphonesController.getAllEarphones);
 

@@ -8,3 +8,7 @@ const mongoose = require("mongoose");
   });
 };
 
+export const closeMongo = async (): Promise<void> => {
+  return mongoose.connection.close();
+}
+
