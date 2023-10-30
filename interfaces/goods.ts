@@ -56,4 +56,9 @@ export interface IGoods {
       desktop: String;
     };
   };
+  newImage?: {
+    mobile: String;
+    tablet: String;
+    desktop: String;
+  };
 }

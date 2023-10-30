@@ -25,6 +25,7 @@ describe("new goods test", () => {
     expect(typeof goodsController._body.gallery).toBe("object");
     expect(typeof goodsController._body._id).toBe("string");
     expect(goodsController._body._id.length).toBe(24);
+    expect(typeof goodsController._body.newImage).toBe("object")
   });
 });
 
