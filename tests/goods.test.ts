@@ -25,7 +25,7 @@ describe("new goods test", () => {
     expect(typeof goodsController._body.gallery).toBe("object");
     expect(typeof goodsController._body._id).toBe("string");
     expect(goodsController._body._id.length).toBe(24);
-    expect(typeof goodsController._body.newImage).toBe("object")
+    expect(typeof goodsController._body.previewImage).toBe("object")
   });
 });
 
@@ -48,6 +48,7 @@ describe("goods by id test", () => {
      expect(typeof goodsByIdController._body.features).toBe("string");
      expect(Array.isArray(goodsByIdController._body.includes)).toBe(true);
      expect(typeof goodsByIdController._body.gallery).toBe("object");
+      expect(typeof goodsByIdController._body.previewImage).toBe("object");
   });
   test("incorrect id", async () => {
      const goodsByIdController = await supertest(app).get(
@@ -76,6 +77,7 @@ describe("other goods test", () => {
     expect(typeof otherGoodsController._body[0].features).toBe("string");
     expect(Array.isArray(otherGoodsController._body[0].includes)).toBe(true);
     expect(typeof otherGoodsController._body[0].gallery).toBe("object");
+    expect(typeof otherGoodsController._body[0].previewImage).toBe("object");
     expect(typeof otherGoodsController._body[0]._id).toBe("string");
     expect(otherGoodsController._body[0]._id.length).toBe(24);
   })

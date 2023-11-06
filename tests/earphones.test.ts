@@ -23,6 +23,7 @@ describe("get all earphones test", () => {
     expect(typeof earphonesController._body[0].features).toBe("string");
     expect(Array.isArray(earphonesController._body[0].includes)).toBe(true);
     expect(typeof earphonesController._body[0].gallery).toBe("object");
+    expect(typeof earphonesController._body[0].previewImage).toBe("object");
     expect(typeof earphonesController._body[0]._id).toBe("string");
     expect(earphonesController._body[0]._id.length).toBe(24);
   });
