@@ -60,6 +60,7 @@ const goodsSchema:mongoose.Schema = new Schema(
         desktop: String,
       },
     },
+    stock: Number
   },
   { versionKey: false, timestamp: true }
 );

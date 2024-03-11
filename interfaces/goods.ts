@@ -61,4 +61,5 @@ export interface IGoods {
     tablet: String;
     desktop: String;
   };
+  stock:number
 }
