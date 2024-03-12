@@ -1,7 +1,7 @@
-const express = require("express");
-const stockRoute = expess.Router();
+import express from "express";
 const stockController = require("../controllers/stock");
+const stockRoute = express.Router();
 
-speakersRoute.get("/check", speakersController.getAllSpeakers);
+stockRoute.get("/check/:goodsId", stockController.checkStockById);
 
-module.exports = { speakersRoute };
+module.exports = { stockRoute };

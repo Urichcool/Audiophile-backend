@@ -11,7 +11,7 @@ const { goodsRoute } = require("./routes/goodsRoute");
 const { headphonesRoute } = require("./routes/headphonesRoute");
 const { speakersRoute } = require("./routes/speakersRoute");
 const { earphonesRoute } = require("./routes/earphonesRoute");
-const {stockRoute} = require(".routes/stockRoute")
+const {stockRoute} = require("./routes/stockRoute")
 
 
 const app: Express = express();
@@ -26,7 +26,7 @@ app.use("/goods", goodsRoute);
 app.use("/headphones", headphonesRoute);
 app.use("/speakers", speakersRoute);
 app.use("/earphones", earphonesRoute);
-app.use("/stock", earphonesRoute);
+app.use("/stock", stockRoute);
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({ message: "Not found" });

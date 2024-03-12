@@ -31,6 +31,7 @@ describe("speakers test", () => {
         expect(typeof speakersController._body[0].features).toBe("string");
         expect(Array.isArray(speakersController._body[0].includes)).toBe(true);
         expect(typeof speakersController._body[0].gallery).toBe("object");
+        expect(typeof speakersController._body[0].previewImage).toBe("object");
         expect(typeof speakersController._body[0]._id).toBe("string");
         expect(speakersController._body[0]._id.length).toBe(24);
     }));
