@@ -64,5 +64,6 @@ const goodsSchema = new Schema({
             desktop: String,
         },
     },
+    stock: Number
 }, { versionKey: false, timestamp: true });
 exports.Goods = model("Goods", goodsSchema, "goods");

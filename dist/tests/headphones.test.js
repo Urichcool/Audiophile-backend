@@ -31,6 +31,7 @@ describe("headphones test", () => {
         expect(typeof headphonesController._body[0].features).toBe("string");
         expect(Array.isArray(headphonesController._body[0].includes)).toBe(true);
         expect(typeof headphonesController._body[0].gallery).toBe("object");
+        expect(typeof headphonesController._body[0].previewImage).toBe("object");
         expect(typeof headphonesController._body[0]._id).toBe("string");
         expect(headphonesController._body[0]._id.length).toBe(24);
     }));
