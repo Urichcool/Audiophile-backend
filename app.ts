@@ -14,7 +14,9 @@ const { earphonesRoute } = require("./routes/earphonesRoute");
 const { stockRoute } = require("./routes/stockRoute");
 
 
-
+const corsOptions = {
+  origin: "http://localhost:3000"
+};
 
 
 
@@ -25,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(morgan("tiny"));
+app.use(cors(corsOptions));
 
 app.use("/goods", goodsRoute);
 app.use("/headphones", headphonesRoute);
