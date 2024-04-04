@@ -11,8 +11,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const goods_1 = require("./schemas/goods");
 const findNewGoods = () => __awaiter(void 0, void 0, void 0, function* () { return goods_1.Goods.find({ new: true }); });
+const findCartStock = (cartIds) => __awaiter(void 0, void 0, void 0, function* () {
+    return goods_1.Goods.find({
+        _id: {
+            $in: cartIds,
+        },
+    });
+});
+;
 const findGoodsById = (goodsId) => __awaiter(void 0, void 0, void 0, function* () { return goods_1.Goods.findById(goodsId); });
 module.exports = {
     findNewGoods,
-    findGoodsById
+    findGoodsById,
+    findCartStock
 };
