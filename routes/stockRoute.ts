@@ -3,6 +3,6 @@ const stockController = require("../controllers/stock");
 const stockRoute = express.Router();
 
 stockRoute.get("/check/:goodsId", stockController.checkStockById);
-stockRoute.get("/check/cart", stockController.checkCartStock)
+stockRoute.post("/check/cart", stockController.checkCartStock)
 
 module.exports = { stockRoute };
