@@ -1,5 +1,5 @@
 export interface IGoods {
-  id: string;
+  _id: string;
   slug: String;
   name: String;
   image: {
