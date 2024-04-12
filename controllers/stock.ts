@@ -18,24 +18,20 @@ const checkCartStock = async (
   req: Request<{}, {}, { id: string; quantity: number }[]>,
   res: Response
 ): Promise<void | Response<any, Record<string, any>>> => {
-  const Ids: string[] = req.body.map(({ id }) => id);
-  const cart: IGoods[] = await service.findCartStock(Ids);
-  if (
-    req.body.every(({ id, quantity }) => {
-      cart.find(({ _id }) => {
-        id === String(_id);
-      })!.stock <= quantity;
-    })
-  ) {
-    return res.status(200).json({ isEnoughCartStock: true });
-  }
-  if (
-    req.body.some(({ id, quantity }) => {
-      cart.find(({ _id }) => {
-        id === String(_id);
-      })!.stock < quantity;
-    })
-  ) {
+  if (Object.keys(req.body).length !== 0) {
+    const Ids: string[] = req.body.map(({ id }) => id);
+    const cart: IGoods[] = await service.findCartStock(Ids);
+    if (
+      cart.every(({ _id, stock }) => {
+        const product: { id: string; quantity: number } | undefined =
+          req.body.find(({ id }) => id === String(_id));
+        if (product) {
+          return product.quantity <= stock;
+        }
+      })
+    ) {
+      return res.status(200).json({ isEnoughCartStock: true });
+    }
     return res.status(200).json({ isEnoughCartStock: false });
   }
   res.status(404).json({ message: "Not found" });

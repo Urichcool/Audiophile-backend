@@ -19,20 +19,17 @@ const checkStockById = (req, res) => __awaiter(void 0, void 0, void 0, function*
     res.status(404).json({ message: "Not found" });
 });
 const checkCartStock = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const Ids = req.body.map(({ id }) => id);
-    const cart = yield service.findCartStock(Ids);
-    if (req.body.every(({ id, quantity }) => {
-        cart.find(({ _id }) => {
-            id === String(_id);
-        }).stock <= quantity;
-    })) {
-        return res.status(200).json({ isEnoughCartStock: true });
-    }
-    if (req.body.some(({ id, quantity }) => {
-        cart.find(({ _id }) => {
-            id === String(_id);
-        }).stock < quantity;
-    })) {
+    if (Object.keys(req.body).length !== 0) {
+        const Ids = req.body.map(({ id }) => id);
+        const cart = yield service.findCartStock(Ids);
+        if (cart.every(({ _id, stock }) => {
+            const product = req.body.find(({ id }) => id === String(_id));
+            if (product) {
+                return product.quantity <= stock;
+            }
+        })) {
+            return res.status(200).json({ isEnoughCartStock: true });
+        }
         return res.status(200).json({ isEnoughCartStock: false });
     }
     res.status(404).json({ message: "Not found" });
