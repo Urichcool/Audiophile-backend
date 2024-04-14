@@ -3,7 +3,7 @@ import { Goods } from "./schemas/goods";
 
 const findNewGoods = async (): Promise<IGoods[]> => Goods.find({ new: true });
 const findCartStock = async (cartIds: [string]): Promise<IGoods[]> =>
-  Goods.find({
+ Goods.find({
     _id: {
       $in: cartIds,
     },
