@@ -18,10 +18,20 @@ const findCartStock = (cartIds) => __awaiter(void 0, void 0, void 0, function* (
         },
     });
 });
-;
 const findGoodsById = (goodsId) => __awaiter(void 0, void 0, void 0, function* () { return goods_1.Goods.findById(goodsId); });
+const findProductAndUpdateStock = ({ id, quantity, }) => __awaiter(void 0, void 0, void 0, function* () {
+    return goods_1.Goods.findByIdAndUpdate({ _id: id }, { $inc: { stock: -quantity } })
+        .then(() => {
+        return { isUpdated: true };
+    })
+        .catch(() => {
+        return { isUpdated: false };
+    });
+});
+;
 module.exports = {
     findNewGoods,
     findGoodsById,
-    findCartStock
+    findCartStock,
+    findProductAndUpdateStock,
 };
