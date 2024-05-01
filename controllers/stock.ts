@@ -42,16 +42,9 @@ const getTheProductsOutOfStock = async (
   res: Response
 ): Promise<void | Response<any, Record<string, any>>> => {
   if (Object.keys(req.body).length !== 0) {
-    req.body.map(async (product) => {
-      const result: { isUpdated: boolean } =
-        await service.findProductAndUpdateStock(product);
-      if (result.isUpdated) {
-        return res.status(200).json({ isUpdated: true });
-      }
-    });
-    return res.status(200).json({ isUpdated: false });
+  await service.findProductAndUpdateStock(req.body);
   }
-  res.status(404).json({ message: "Not found" });
+return res.status(200).json({ isEnoughCartStock: true });
 };
 
 module.exports = {

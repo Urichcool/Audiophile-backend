@@ -1,5 +1,6 @@
 import { IGoods } from "../interfaces/goods";
 import { Goods } from "./schemas/goods";
+import * as mongodb from "mongodb";
 
 const findNewGoods = async (): Promise<IGoods[]> => Goods.find({ new: true });
 const findCartStock = async (cartIds: [string]): Promise<IGoods[]> =>
@@ -10,20 +11,27 @@ const findCartStock = async (cartIds: [string]): Promise<IGoods[]> =>
   });
 const findGoodsById = async (goodsId: string): Promise<IGoods | null> =>
   Goods.findById(goodsId);
-const findProductAndUpdateStock = async ({
-  id,
-  quantity,
-}: {
-  id: string;
-  quantity: number;
-}) =>
-  Goods.findByIdAndUpdate({ _id: id }, { $inc: { stock: -quantity } })
-    .then(() => {
-      return {isUpdated: true}
+
+
+
+const findProductAndUpdateStock = async (
+  products: {
+    id: string;
+    quantity: number;
+  }[]
+) => {
+  const bulkOps: mongodb.AnyBulkWriteOperation<IGoods>[] = products.map(
+    (product) => ({
+      updateOne: {
+        filter: { _id: product.id },
+        update: { $inc: { stock: -product.quantity } },
+      },
     })
-    .catch(() => {
-      return { isUpdated: false };
-    }); ;
+  );
+
+  await Goods.bulkWrite(bulkOps);
+};
+
 
 module.exports = {
   findNewGoods,

@@ -36,15 +36,9 @@ const checkCartStock = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 const getTheProductsOutOfStock = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (Object.keys(req.body).length !== 0) {
-        req.body.map((product) => __awaiter(void 0, void 0, void 0, function* () {
-            const result = yield service.findProductAndUpdateStock(product);
-            if (result.isUpdated) {
-                return res.status(200).json({ isUpdated: true });
-            }
-        }));
-        return res.status(200).json({ isUpdated: false });
+        yield service.findProductAndUpdateStock(req.body);
     }
-    res.status(404).json({ message: "Not found" });
+    return res.status(200).json({ isEnoughCartStock: true });
 });
 module.exports = {
     checkStockById,
