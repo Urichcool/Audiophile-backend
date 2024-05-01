@@ -12,14 +12,12 @@ const findCartStock = async (cartIds: [string]): Promise<IGoods[]> =>
 const findGoodsById = async (goodsId: string): Promise<IGoods | null> =>
   Goods.findById(goodsId);
 
-
-
 const findProductAndUpdateStock = async (
   products: {
     id: string;
     quantity: number;
   }[]
-) => {
+): Promise<{ wasUpdated: boolean }> => {
   const bulkOps: mongodb.AnyBulkWriteOperation<IGoods>[] = products.map(
     (product) => ({
       updateOne: {
@@ -29,9 +27,18 @@ const findProductAndUpdateStock = async (
     })
   );
 
-  await Goods.bulkWrite(bulkOps);
+  return await Goods.bulkWrite(bulkOps)
+    .then(() => {
+      return {
+        wasUpdated: true,
+      };
+    })
+    .catch(() => {
+      return {
+        wasUpdated: false,
+      };
+    });
 };
-
 
 module.exports = {
   findNewGoods,
