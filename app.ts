@@ -1,9 +1,4 @@
-import express, {
-  Express,
-  Request,
-  Response,
-  NextFunction,
-} from "express";
+import express, { Express, Request, Response, NextFunction } from "express";
 import { HttpException } from "./exceptions/HttpException";
 const morgan = require("morgan");
 const cors = require("cors");
@@ -12,14 +7,11 @@ const { headphonesRoute } = require("./routes/headphonesRoute");
 const { speakersRoute } = require("./routes/speakersRoute");
 const { earphonesRoute } = require("./routes/earphonesRoute");
 const { stockRoute } = require("./routes/stockRoute");
-
+const { orderRoute } = require("./routes/orderRoute");
 
 const corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://localhost:3000",
 };
-
-
-
 
 const app: Express = express();
 
@@ -34,6 +26,7 @@ app.use("/headphones", headphonesRoute);
 app.use("/speakers", speakersRoute);
 app.use("/earphones", earphonesRoute);
 app.use("/stock", stockRoute);
+app.use("/order", orderRoute);
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({ message: "Not found" });

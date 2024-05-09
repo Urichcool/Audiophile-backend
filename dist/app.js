@@ -12,8 +12,9 @@ const { headphonesRoute } = require("./routes/headphonesRoute");
 const { speakersRoute } = require("./routes/speakersRoute");
 const { earphonesRoute } = require("./routes/earphonesRoute");
 const { stockRoute } = require("./routes/stockRoute");
+const { orderRoute } = require("./routes/orderRoute");
 const corsOptions = {
-    origin: "http://localhost:3000"
+    origin: "http://localhost:3000",
 };
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -26,6 +27,7 @@ app.use("/headphones", headphonesRoute);
 app.use("/speakers", speakersRoute);
 app.use("/earphones", earphonesRoute);
 app.use("/stock", stockRoute);
+app.use("/order", orderRoute);
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });
 });
