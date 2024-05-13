@@ -10,11 +10,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const service = require("../service/orders");
+const orderSchema_1 = require("../validation/orderSchema");
 const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (Object.keys(req.body).length !== 0) {
-        const result = yield service.postNewOrder(req.body);
-        if (result) {
-            return res.status(200).json({ addedOrder: true });
+        if (yield orderSchema_1.orderSchema
+            .validate(req.body)
+            .then(() => true)
+            .catch(() => false)) {
+            const result = yield service.postNewOrder(req.body);
+            if (result) {
+                return res.status(200).json({ addedOrder: true });
+            }
         }
         return res.status(200).json({ addedOrder: false });
     }
