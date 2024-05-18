@@ -65,6 +65,9 @@ const goodsSchema:mongoose.Schema = new Schema(
   { versionKey: false, timestamp: true }
 );
 
+
+
 export const Goods = model("Goods", goodsSchema, "goods");
+
 
 
