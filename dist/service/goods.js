@@ -18,10 +18,29 @@ const findCartStock = (cartIds) => __awaiter(void 0, void 0, void 0, function* (
         },
     });
 });
-;
 const findGoodsById = (goodsId) => __awaiter(void 0, void 0, void 0, function* () { return goods_1.Goods.findById(goodsId); });
+const findProductAndUpdateStock = (products) => __awaiter(void 0, void 0, void 0, function* () {
+    const bulkOps = products.map((product) => ({
+        updateOne: {
+            filter: { _id: product.id },
+            update: { $inc: { stock: -product.quantity } },
+        },
+    }));
+    return yield goods_1.Goods.bulkWrite(bulkOps)
+        .then(() => {
+        return {
+            wasUpdated: true,
+        };
+    })
+        .catch(() => {
+        return {
+            wasUpdated: false,
+        };
+    });
+});
 module.exports = {
     findNewGoods,
     findGoodsById,
-    findCartStock
+    findCartStock,
+    findProductAndUpdateStock,
 };

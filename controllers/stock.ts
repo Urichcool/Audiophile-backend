@@ -37,7 +37,23 @@ const checkCartStock = async (
   res.status(404).json({ message: "Not found" });
 };
 
+const getTheProductsOutOfStock = async (
+  req: Request<{}, {}, { id: string; quantity: number }[]>,
+  res: Response
+): Promise<void | Response<any, Record<string, any>>> => {
+  if (Object.keys(req.body).length !== 0) {
+    const { wasUpdated }: { wasUpdated: boolean } =
+      await service.findProductAndUpdateStock(req.body);
+    if (wasUpdated) {
+      return res.status(200).json({ wasUpdated: true });
+    }
+    return res.status(200).json({ wasUpdated: false });
+  }
+  res.status(404).json({ message: "Not found" });
+};
+
 module.exports = {
   checkStockById,
   checkCartStock,
+  getTheProductsOutOfStock,
 };

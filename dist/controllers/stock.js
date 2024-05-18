@@ -34,7 +34,18 @@ const checkCartStock = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     res.status(404).json({ message: "Not found" });
 });
+const getTheProductsOutOfStock = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (Object.keys(req.body).length !== 0) {
+        const { wasUpdated } = yield service.findProductAndUpdateStock(req.body);
+        if (wasUpdated) {
+            return res.status(200).json({ wasUpdated: true });
+        }
+        return res.status(200).json({ wasUpdated: false });
+    }
+    res.status(404).json({ message: "Not found" });
+});
 module.exports = {
     checkStockById,
     checkCartStock,
+    getTheProductsOutOfStock,
 };
