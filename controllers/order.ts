@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { IOrders } from "../interfaces/orders";
 const service = require("../service/orders");
-import { orderSchema } from "../validation/orderSchema";
+import { orderProductsSchema, orderSchema } from "../validation/orderSchema";
 
 const postNewOrder = async (
   req: Request<{}, {}, IOrders>,
@@ -9,10 +9,14 @@ const postNewOrder = async (
 ): Promise<void | Response<any, Record<string, any>>> => {
   if (Object.keys(req.body).length !== 0) {
     if (
-      await orderSchema
-        .validate(req.body)
+      (await orderSchema
+        .validate(req.body.shippingData)
         .then(() => true)
-        .catch(() => false)
+        .catch(() => false)) &&
+      (await orderProductsSchema
+        .validate(req.body.products)
+        .then(() => true)
+        .catch(() => false))
     ) {
       const result = await service.postNewOrder(req.body);
       if (result) {

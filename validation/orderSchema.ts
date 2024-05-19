@@ -1,33 +1,17 @@
 import * as yup from "yup";
 
-export const orderSchema: yup.ObjectSchema<
-  {
-    name: string | undefined;
-    email: string | undefined;
-    phone: string | undefined;
-    address: string | undefined;
-    zip: string | undefined;
-    city: string | undefined;
-    country: string | undefined;
+export const orderSchema: yup.ObjectSchema<{
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+    zip: string;
+    city: string;
+    country: string;
     radioValue: string | undefined;
     eMoneyNumber: string | undefined;
     eMoneyPin: string | undefined;
-  },
-  yup.AnyObject,
-  {
-    name: string | undefined;
-    email: string | undefined;
-    phone: string | undefined;
-    address: string | undefined;
-    zip: string | undefined;
-    city: string | undefined;
-    country: string | undefined;
-    radioValue: string | undefined;
-    eMoneyNumber: string | undefined;
-    eMoneyPin: string | undefined;
-  },
-  ""
-> = yup.object().shape({
+}, yup.AnyObject, {}, ""> = yup.object().shape({
   name: yup.string().required("This field is required"),
   email: yup
     .string()
@@ -140,3 +124,32 @@ export const orderSchema: yup.ObjectSchema<
       },
     }),
 });
+
+export const orderProductsSchema: yup.ArraySchema<
+  | {
+      name?: string | undefined;
+      id?: string | undefined;
+      quantity?: number | undefined;
+      price?: number | undefined;
+      picture?: string | undefined;
+      totalPrice?: number | undefined;
+      category?: string | undefined;
+    }[]
+  | undefined,
+  yup.AnyObject,
+  "",
+  ""
+> = yup.array().of(
+  yup
+    .object()
+    .shape({
+      id: yup.string(),
+      name: yup.string(),
+      quantity: yup.number(),
+      price: yup.number(),
+      picture: yup.string(),
+      totalPrice: yup.number(),
+      category: yup.string(),
+    })
+    .required()
+);
