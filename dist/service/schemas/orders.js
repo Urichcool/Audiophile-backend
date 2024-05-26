@@ -7,15 +7,28 @@ exports.Orders = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const { Schema, model } = mongoose_1.default;
 const ordersSchema = new Schema({
-    name: String,
-    email: String,
-    phone: String,
-    address: String,
-    zip: String,
-    city: String,
-    country: String,
-    radioValue: String,
-    eMoneyNumber: String,
-    eMoneyPin: String,
+    shippingData: {
+        name: String,
+        email: String,
+        phone: String,
+        address: String,
+        zip: String,
+        city: String,
+        country: String,
+        radioValue: String,
+        eMoneyNumber: String,
+        eMoneyPin: String,
+    },
+    products: [
+        {
+            id: String,
+            name: String,
+            quantity: Number,
+            price: Number,
+            picture: String,
+            totalPrice: Number,
+            category: String,
+        },
+    ],
 }, { versionKey: false, timestamp: true });
 exports.Orders = model("Orders", ordersSchema, "orders");

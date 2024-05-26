@@ -11,14 +11,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const service = require("../service/orders");
 const orderSchema_1 = require("../validation/orderSchema");
+const nodemailer_1 = require("../service/nodemailer");
 const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (Object.keys(req.body).length !== 0) {
-        if (yield orderSchema_1.orderSchema
-            .validate(req.body)
+        if ((yield orderSchema_1.orderSchema
+            .validate(req.body.shippingData)
             .then(() => true)
-            .catch(() => false)) {
+            .catch(() => false)) &&
+            (yield orderSchema_1.orderProductsSchema
+                .validate(req.body.products)
+                .then(() => true)
+                .catch(() => false))) {
             const result = yield service.postNewOrder(req.body);
             if (result) {
+                (0, nodemailer_1.sendEmail)();
                 return res.status(200).json({ addedOrder: true });
             }
         }
