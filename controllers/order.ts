@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { IOrders } from "../interfaces/orders";
 const service = require("../service/orders");
 import { orderProductsSchema, orderSchema } from "../validation/orderSchema";
+import { sendEmail } from "../service/nodemailer";
 
 const postNewOrder = async (
   req: Request<{}, {}, IOrders>,
@@ -20,6 +21,7 @@ const postNewOrder = async (
     ) {
       const result = await service.postNewOrder(req.body);
       if (result) {
+        sendEmail();
         return res.status(200).json({ addedOrder: true });
       }
     }

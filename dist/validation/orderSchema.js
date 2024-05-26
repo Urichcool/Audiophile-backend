@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.orderSchema = void 0;
+exports.orderProductsSchema = exports.orderSchema = void 0;
 const yup = __importStar(require("yup"));
 exports.orderSchema = yup.object().shape({
     name: yup.string().required("This field is required"),
@@ -134,3 +134,15 @@ exports.orderSchema = yup.object().shape({
         },
     }),
 });
+exports.orderProductsSchema = yup.array().of(yup
+    .object()
+    .shape({
+    id: yup.string(),
+    name: yup.string(),
+    quantity: yup.number(),
+    price: yup.number(),
+    picture: yup.string(),
+    totalPrice: yup.number(),
+    category: yup.string(),
+})
+    .required());
