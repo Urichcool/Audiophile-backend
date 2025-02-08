@@ -1,10 +1,13 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  service: "yahoo",
+  host: "smtp-mail.outlook.com",
+  port: 587,
+  secure: false,
+  service: "outlook",
   auth: {
-    user: "audiophile.75@yahoo.com",
-    pass: "Urichcool1205",
+    user: process.env.MAIL,
+    pass: process.env.MAILPASSWORD,
   },
 });
 
@@ -12,7 +15,7 @@ const transporter = nodemailer.createTransport({
 
 export const sendEmail = () => {
 const mailOptions = {
-  from: "audiophile.75@yahoo.com",
+  from: process.env.MAIL,
   to: "yurii.vovikov@gmail.com",
   subject: "Sending Email using Node.js",
   text: "That was easy!",
@@ -25,6 +28,5 @@ transporter.sendMail(mailOptions, function (error: any, info: any) {
     console.log("Email sent: " + info.response);
   }
 });
-
 }
 
