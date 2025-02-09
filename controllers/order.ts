@@ -21,7 +21,7 @@ const postNewOrder = async (
     ) {
       const result = await service.postNewOrder(req.body);
       if (result) {
-        sendEmail();
+        sendEmail(req.body);
         return res.status(200).json({ addedOrder: true });
       }
     }

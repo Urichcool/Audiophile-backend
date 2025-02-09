@@ -24,7 +24,7 @@ const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 .catch(() => false))) {
             const result = yield service.postNewOrder(req.body);
             if (result) {
-                (0, nodemailer_1.sendEmail)();
+                (0, nodemailer_1.sendEmail)(req.body);
                 return res.status(200).json({ addedOrder: true });
             }
         }

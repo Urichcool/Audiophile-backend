@@ -20,4 +20,5 @@ export interface IOrders {
     totalPrice: number;
     category: string;
   }[];
+  total: number,
 }
