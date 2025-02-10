@@ -1,9 +1,134 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+    rel="stylesheet"
+  />
+</head>
 <style>
-   .title { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; color: red; }
-    button { background-color: #008CBA; color: white; padding: 10px 20px; text-decoration: none; display: inline-block; }
-  </style>
-  
-  <div class="container">
-    <h2 class="title">{{shippingData.name}}</h2>
-    <p>{{total}}</p>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+  }
+
+  .container {
+    background-color: #0e0e0e;
+  }
+
+  .wraper {
+    padding: 30px;
+  }
+
+  .text {
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 25px;
+    color: #ffffff;
+    opacity: 0.85;
+  }
+
+  .product-list {
+    margin-top: 40px;
+  }
+
+  .product-item {
+    display: flex;
+    width: 280px;
+    margin-bottom: 24px;
+  }
+
+  .product-item-picture-container {
+    padding: 10px;
+    background-color: #d87d4a;
+    border-radius: 8px;
+    margin-right: 15px;
+  }
+
+  .product-item-picture {
+    width: 40px;
+    height: 40px;
+  }
+
+  .product-item-name {
+    font-family: Manrope;
+    color: #ffffff;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+    width: 200px;
+    opacity: 0.85;
+  }
+
+
+  .product-item-price {
+    color: #ffffff;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+    opacity: 0.7;
+    width: 100px;
+    display: flex;
+  }
+
+  .product-item-quantity {
+    margin-left: auto;
+    opacity: 0.7;
+    color: #ffffff;
+    font-family: Manrope;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0px;
+    text-align: right;
+  }
+</style>
+
+<div class="container">
+  <div class="wraper">
+    <img
+      src="https://res.cloudinary.com/dir4brsjf/image/upload/v1739115245/audiophile/p69zjt9dgcnd3sqxcxy3.png"
+      alt="audiophile logo"
+    />
+    <p class="text">
+      Dear {{shippingData.name}}, Thank you for your recent purchase from our
+      store. We truly appreciate your trust in us. Below, you will find the
+      details of your order.
+    </p>
+    <ul class="product-list">
+      {{#each products}}
+      <li class="product-item">
+        <div class="product-item-picture-container">
+          <img
+            src="`{{picture}}`"
+            alt="`{{name}}`"
+            class="product-item-picture"
+          />
+        </div>
+        <div>
+          <h6 class="product-item-name">{{name}}</h6>
+          <p class="product-item-price">${{totalPrice}} <span class="product-item-quantity">x{{quantity}}</span></p>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
   </div>
+</div>
