@@ -26,6 +26,7 @@ const ordersSchema: mongoose.Schema = new Schema(
         category: String,
       },
     ],
+    total: Number,
   },
   { versionKey: false, timestamp: true }
 );

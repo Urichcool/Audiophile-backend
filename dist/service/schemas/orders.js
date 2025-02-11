@@ -30,5 +30,6 @@ const ordersSchema = new Schema({
             category: String,
         },
     ],
+    total: Number,
 }, { versionKey: false, timestamp: true });
 exports.Orders = model("Orders", ordersSchema, "orders");
