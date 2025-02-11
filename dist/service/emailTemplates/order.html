@@ -55,7 +55,7 @@
 
   .product-item-picture-container {
     padding: 10px;
-    background-color: #d87d4a;
+    background-color: #F1F1F1;
     border-radius: 8px;
     margin-right: 15px;
   }
@@ -75,7 +75,6 @@
     width: 200px;
     opacity: 0.85;
   }
-
 
   .product-item-price {
     color: #ffffff;
@@ -100,6 +99,61 @@
     letter-spacing: 0px;
     text-align: right;
   }
+
+  .total-container {
+    display: flex;
+    margin-top: 40px;
+  }
+
+  .total-text {
+    text-transform: uppercase;
+    opacity: 0.5;
+    color: #ffffff;
+    font-family: Manrope;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0px;
+    margin-right: 25px;
+  }
+
+  .total-amount-text {
+    color: #d87d4a;
+    font-family: Manrope;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0px;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+
+  .footer-text {
+    margin-top: 60px;
+    font-family: Manrope;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 25px;
+    color: #ffffff;
+    opacity: 0.90;
+    max-width: 150px;
+  }
+
+  .footer-logo{
+    font-family: Manrope;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 5px;
+    color: #d87d4a;
+    display: block;
+  }
 </style>
 
 <div class="container">
@@ -117,18 +171,21 @@
       {{#each products}}
       <li class="product-item">
         <div class="product-item-picture-container">
-          <img
-            src="`{{picture}}`"
-            alt="`{{name}}`"
-            class="product-item-picture"
-          />
+          <img src="{{picture}}" alt="{{name}}" class="product-item-picture" />
         </div>
         <div>
           <h6 class="product-item-name">{{name}}</h6>
-          <p class="product-item-price">${{totalPrice}} <span class="product-item-quantity">x{{quantity}}</span></p>
+          <p class="product-item-price">
+            ${{totalPrice}}
+            <span class="product-item-quantity">x{{quantity}}</span>
+          </p>
         </div>
       </li>
       {{/each}}
     </ul>
+    <div class="total-container">
+      <p class="total-text">Grand total</p>
+      <p class="total-amount-text">${{total}}</p>
   </div>
+  <p class="footer-text">Best regards <span class="footer-logo">Audiophile</span></p>
 </div>
