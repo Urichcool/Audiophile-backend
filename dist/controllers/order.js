@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const service = require("../service/orders");
 const orderSchema_1 = require("../validation/orderSchema");
-const nodemailer_1 = require("../service/nodemailer");
+const sendGridMailer_1 = require("../service/sendGridMailer");
 const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (Object.keys(req.body).length !== 0) {
         if ((yield orderSchema_1.orderSchema
@@ -24,7 +24,7 @@ const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 .catch(() => false))) {
             const result = yield service.postNewOrder(req.body);
             if (result) {
-                (0, nodemailer_1.sendEmail)(req.body);
+                (0, sendGridMailer_1.sendEmail)(req.body);
                 return res.status(200).json({ addedOrder: true });
             }
         }

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { IOrders } from "../interfaces/orders";
 const service = require("../service/orders");
 import { orderProductsSchema, orderSchema } from "../validation/orderSchema";
-import { sendEmail } from "../service/nodemailer";
+import { sendEmail } from "../service/sendGridMailer";
 
 const postNewOrder = async (
   req: Request<{}, {}, IOrders>,
