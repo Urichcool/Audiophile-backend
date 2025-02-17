@@ -25,10 +25,10 @@ const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             const result = yield service.postNewOrder(req.body);
             if (result) {
                 (0, sendGridMailer_1.sendEmail)(req.body);
-                return res.status(200).json({ addedOrder: true });
+                return res.status(201).json({ addedOrder: true });
             }
         }
-        return res.status(200).json({ addedOrder: false });
+        return res.status(400).json({ addedOrder: false });
     }
     res.status(404).json({ message: "Not found" });
 });

@@ -22,10 +22,10 @@ const postNewOrder = async (
       const result = await service.postNewOrder(req.body);
       if (result) {
         sendEmail(req.body);
-        return res.status(200).json({ addedOrder: true });
+        return res.status(201).json({ addedOrder: true });
       }
     }
-    return res.status(200).json({ addedOrder: false });
+    return res.status(400).json({ addedOrder: false });
   }
   res.status(404).json({ message: "Not found" });
 };

@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(morgan("tiny"));
 app.use(cors());
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use("/goods", goodsRoute);
 app.use("/headphones", headphonesRoute);
 app.use("/speakers", speakersRoute);

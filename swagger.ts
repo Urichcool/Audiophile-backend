@@ -11,41 +11,41 @@ const options = {
     },
     components: {
       schemas: {
-        Product: {
+        Product:  {
           type: "object",
           properties: {
-            _id: { type: "string", description: "Unique identifier for the product" },
-            slug: { type: "string", description: "URL-friendly name for the product" },
-            name: { type: "string", description: "Product name" },
+            _id: { type: "string", description: "Unique product ID", example: "60d21b4667d0d8992e610c85" },
+            slug: { type: "string", description: "Product slug (URL-friendly identifier)", example: "xx99-mark-two-headphones" },
+            name: { type: "string", description: "Product name", example: "XX99 Mark II Headphones" },
             image: {
               type: "object",
               properties: {
-                mobile: { type: "string", description: "Mobile image URL" },
-                tablet: { type: "string", description: "Tablet image URL" },
-                desktop: { type: "string", description: "Desktop image URL" },
+                mobile: { type: "string", example: "/images/mobile/image.jpg" },
+                tablet: { type: "string", example: "/images/tablet/image.jpg" },
+                desktop: { type: "string", example: "/images/desktop/image.jpg" },
               },
             },
-            category: { type: "string", description: "Product category" },
+            category: { type: "string", description: "Product category", example: "headphones" },
             categoryImage: {
               type: "object",
               properties: {
-                mobile: { type: "string", description: "Category image for mobile" },
-                tablet: { type: "string", description: "Category image for tablet" },
-                desktop: { type: "string", description: "Category image for desktop" },
+                mobile: { type: "string", example: "/images/mobile/category.jpg" },
+                tablet: { type: "string", example: "/images/tablet/category.jpg" },
+                desktop: { type: "string", example: "/images/desktop/category.jpg" },
               },
             },
-            new: { type: "boolean", description: "Indicates if the product is new" },
-            price: { type: "number", description: "Product price" },
-            description: { type: "string", description: "Product description" },
-            features: { type: "string", description: "Product features" },
+            new: { type: "boolean", description: "Indicates if the product is new", example: true },
+            price: { type: "number", description: "Product price", example: 899 },
+            description: { type: "string", description: "Product description", example: "The best audiophile headphones for an immersive experience." },
+            features: { type: "string", description: "Product features", example: "High-quality sound, noise cancellation, long battery life." },
             includes: {
               type: "array",
-              description: "List of included items",
+              description: "List of included accessories",
               items: {
                 type: "object",
                 properties: {
-                  quantity: { type: "number", description: "Quantity of included item" },
-                  item: { type: "string", description: "Name of included item" },
+                  quantity: { type: "number", description: "Quantity of the item", example: 1 },
+                  item: { type: "string", description: "Item name", example: "Headphone stand" },
                 },
               },
             },
@@ -55,25 +55,25 @@ const options = {
                 first: {
                   type: "object",
                   properties: {
-                    mobile: { type: "string", description: "First gallery image for mobile" },
-                    tablet: { type: "string", description: "First gallery image for tablet" },
-                    desktop: { type: "string", description: "First gallery image for desktop" },
+                    mobile: { type: "string", example: "/images/mobile/gallery1.jpg" },
+                    tablet: { type: "string", example: "/images/tablet/gallery1.jpg" },
+                    desktop: { type: "string", example: "/images/desktop/gallery1.jpg" },
                   },
                 },
                 second: {
                   type: "object",
                   properties: {
-                    mobile: { type: "string", description: "Second gallery image for mobile" },
-                    tablet: { type: "string", description: "Second gallery image for tablet" },
-                    desktop: { type: "string", description: "Second gallery image for desktop" },
+                    mobile: { type: "string", example: "/images/mobile/gallery2.jpg" },
+                    tablet: { type: "string", example: "/images/tablet/gallery2.jpg" },
+                    desktop: { type: "string", example: "/images/desktop/gallery2.jpg" },
                   },
                 },
                 third: {
                   type: "object",
                   properties: {
-                    mobile: { type: "string", description: "Third gallery image for mobile" },
-                    tablet: { type: "string", description: "Third gallery image for tablet" },
-                    desktop: { type: "string", description: "Third gallery image for desktop" },
+                    mobile: { type: "string", example: "/images/mobile/gallery3.jpg" },
+                    tablet: { type: "string", example: "/images/tablet/gallery3.jpg" },
+                    desktop: { type: "string", example: "/images/desktop/gallery3.jpg" },
                   },
                 },
               },
@@ -81,15 +81,51 @@ const options = {
             previewImage: {
               type: "object",
               properties: {
-                mobile: { type: "string", description: "Preview image for mobile" },
-                tablet: { type: "string", description: "Preview image for tablet" },
-                desktop: { type: "string", description: "Preview image for desktop" },
+                mobile: { type: "string", example: "/images/mobile/preview.jpg" },
+                tablet: { type: "string", example: "/images/tablet/preview.jpg" },
+                desktop: { type: "string", example: "/images/desktop/preview.jpg" },
               },
             },
-            stock: { type: "number", description: "Number of items in stock" },
+            stock: { type: "number", description: "Stock quantity", example: 25 },
           },
-          required: ["_id", "slug", "name", "price", "category", "stock"],
         },
+        Order: {
+          type: "object",
+          properties: {
+            shippingData: {
+              type: "object",
+              properties: {
+                name: { type: "string", description: "Customer's full name", example: "John Doe" },
+                email: { type: "string", format: "email", description: "Customer's email address", example: "johndoe@example.com" },
+                phone: { type: "string", description: "Customer's phone number", example: "+1 234 567 890" },
+                address: { type: "string", description: "Shipping address", example: "123 Main Street" },
+                zip: { type: "string", description: "ZIP code", example: "12345" },
+                city: { type: "string", description: "City name", example: "New York" },
+                country: { type: "string", description: "Country name", example: "USA" },
+                radioValue: { type: "string", description: "Payment method", example: "eMoney" },
+                eMoneyNumber: { type: "string", nullable: true, description: "eMoney account number (optional)", example: "1234567890" },
+                eMoneyPin: { type: "string", nullable: true, description: "eMoney PIN (optional)", example: "1234" },
+              },
+            },
+            products: {
+              type: "array",
+              description: "List of ordered products",
+              items: {
+                type: "object",
+                properties: {
+                  id: { type: "string", description: "Product ID", example: "product123" },
+                  name: { type: "string", description: "Product name", example: "Wireless Headphones" },
+                  quantity: { type: "integer", description: "Quantity of the product", example: 2 },
+                  price: { type: "number", description: "Price of a single unit", example: 199.99 },
+                  picture: { type: "string", description: "Product image URL", example: "https://example.com/product.jpg" },
+                  totalPrice: { type: "number", description: "Total price for this product", example: 399.98 },
+                  category: { type: "string", description: "Product category", example: "Audio" },
+                },
+              },
+            },
+            total: { type: "number", description: "Total order amount", example: 599.97 },
+          },
+    },
       },
     },
   },
