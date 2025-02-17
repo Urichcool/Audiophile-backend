@@ -63,3 +63,5 @@ export interface IGoods {
   };
   stock:number
 }
+
+

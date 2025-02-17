@@ -8,6 +8,8 @@ const { speakersRoute } = require("./routes/speakersRoute");
 const { earphonesRoute } = require("./routes/earphonesRoute");
 const { stockRoute } = require("./routes/stockRoute");
 const { orderRoute } = require("./routes/orderRoute");
+const swaggerUI = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 
 
 const app: Express = express();
@@ -18,6 +20,7 @@ app.use(express.static("public"));
 app.use(morgan("tiny"));
 app.use(cors());
 
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use("/goods", goodsRoute);
 app.use("/headphones", headphonesRoute);
 app.use("/speakers", speakersRoute);

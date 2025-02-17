@@ -32,7 +32,7 @@ const checkCartStock = async (
     ) {
       return res.status(200).json({ isEnoughCartStock: true });
     }
-    return res.status(200).json({ isEnoughCartStock: false });
+    return res.status(400).json({ isEnoughCartStock: false });
   }
   res.status(404).json({ message: "Not found" });
 };
@@ -45,9 +45,9 @@ const getTheProductsOutOfStock = async (
     const { wasUpdated }: { wasUpdated: boolean } =
       await service.findProductAndUpdateStock(req.body);
     if (wasUpdated) {
-      return res.status(200).json({ wasUpdated: true });
+      return res.status(201).json({ wasUpdated: true });
     }
-    return res.status(200).json({ wasUpdated: false });
+    return res.status(400).json({ wasUpdated: false });
   }
   res.status(404).json({ message: "Not found" });
 };
