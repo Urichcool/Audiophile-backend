@@ -8,11 +8,10 @@ const ordersController = require("../controllers/order");
 const orderRoute = express_1.default.Router();
 /**
  * @openapi
- * /goods/new:
+ * /order/new:
  *   post:
  *     summary: Post a new order to the database
- *     tags:
- *       - Order
+ *     tags: [Order]
  *     requestBody:
  *       required: true
  *       content:

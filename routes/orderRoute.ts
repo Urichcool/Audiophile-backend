@@ -4,11 +4,10 @@ const orderRoute = express.Router();
 
 /**
  * @openapi
- * /goods/new:
+ * /order/new:
  *   post:
  *     summary: Post a new order to the database
- *     tags:
- *       - Order
+ *     tags: [Order]
  *     requestBody:
  *       required: true
  *       content:

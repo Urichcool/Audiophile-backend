@@ -30,7 +30,7 @@ const checkCartStock = (req, res) => __awaiter(void 0, void 0, void 0, function*
         })) {
             return res.status(200).json({ isEnoughCartStock: true });
         }
-        return res.status(200).json({ isEnoughCartStock: false });
+        return res.status(400).json({ isEnoughCartStock: false });
     }
     res.status(404).json({ message: "Not found" });
 });
@@ -38,9 +38,9 @@ const getTheProductsOutOfStock = (req, res) => __awaiter(void 0, void 0, void 0,
     if (Object.keys(req.body).length !== 0) {
         const { wasUpdated } = yield service.findProductAndUpdateStock(req.body);
         if (wasUpdated) {
-            return res.status(200).json({ wasUpdated: true });
+            return res.status(201).json({ wasUpdated: true });
         }
-        return res.status(200).json({ wasUpdated: false });
+        return res.status(400).json({ wasUpdated: false });
     }
     res.status(404).json({ message: "Not found" });
 });

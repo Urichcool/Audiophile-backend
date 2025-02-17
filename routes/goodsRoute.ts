@@ -61,13 +61,13 @@ goodsRoute.get("/other", goodsController.getOtherGoods);
 
 /**
  * @openapi
- * goods/{id}:
+ * goods/{goodsId}:
  *   get:
- *     summary: Get specific product ny id
+ *     summary: Get specific product by id
  *     tags: [Product]
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: goodsId
  *         required: true
  *     responses:
  *       200:
