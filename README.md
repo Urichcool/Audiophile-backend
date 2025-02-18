@@ -1,6 +1,6 @@
 🎧 Audiophile Backend
 
-Welcome to the Audiophile Backend, a powerful API for managing an e-commerce platform specializing in high-quality audio gear. Built with Node.js and Express, this backend supports product management, user authentication, order processing, and email notifications.
+Welcome to the Audiophile Backend, an API for managing an e-commerce platform specializing in high-quality audio gear. Built with Node.js and Express, this backend supports product management, order processing, and email notifications.
 
 🚀 Features
 
