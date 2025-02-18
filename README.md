@@ -1,7 +1,7 @@
 🎧 Audiophile Backend
 
 Welcome to the Audiophile Backend, an API for managing an e-commerce platform specializing in high-quality audio gear. Built with Node.js and Express, this backend supports product management, order processing, and email notifications.
-
+<p>&nbsp;</p>
 🚀 Features
 
 ✅ RESTful API built with Node.js and Express
@@ -15,7 +15,7 @@ Welcome to the Audiophile Backend, an API for managing an e-commerce platform sp
 ✅ SendGrid for order confirmation emails
 
 ✅ API documentation using Swagger
-
+<p>&nbsp;</p>
 🛠️ Technologies Used
 
 Node.js
@@ -31,11 +31,11 @@ Yup (for validation)
 SendGrid (for email notifications)
 
 Swagger (for API documentation)
-
+<p>&nbsp;</p>
 📜 API Documentation
 
 For a complete list of endpoints and request formats, visit:👉 [Swagger Docs](https://audiophile-backend.onrender.com/api-docs/#/)
-
+<p>&nbsp;</p>
 📦 Installation & Setup
 
 📌 Prerequisites
@@ -54,7 +54,7 @@ cd Audiophile-backend
 npm install
 or
 yarn install
-
+<p>&nbsp;</p>
 🔑 Environment Variables
 
 Create a .env file in the root directory and set up the following variables:
@@ -62,19 +62,19 @@ Create a .env file in the root directory and set up the following variables:
 PORT=5000
 SENDGRID_API_KEY=your_sendgrid_api_key
 DATABASE_URL=your_database_url
-
+<p>&nbsp;</p>
 🚀 Run the Development Server
 
 npm run dev
 or
 yarn dev
-
+<p>&nbsp;</p>
 🧪 Run Tests
 
 npm test
 or
 yarn test
-
+<p>&nbsp;</p>
 🚀 Deployment
 
 This project is deployed on Render. To deploy manually:
