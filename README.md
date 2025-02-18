@@ -52,7 +52,7 @@ cd Audiophile-backend
 📦 Install Dependencies
 
 npm install
-# or
+or
 yarn install
 
 🔑 Environment Variables
@@ -66,13 +66,13 @@ DATABASE_URL=your_database_url
 🚀 Run the Development Server
 
 npm run dev
-# or
+or
 yarn dev
 
 🧪 Run Tests
 
 npm test
-# or
+or
 yarn test
 
 🚀 Deployment
